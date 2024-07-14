@@ -18,7 +18,7 @@ async function loadActivities() {
   try {
     const response = await fetch("./data/activities.json");
     const data = await response.json();
-    activities = data;
+    activities = data.activities; // Assign activities array from JSON
   } catch (error) {
     console.error("Error loading activities:", error);
   }
@@ -39,6 +39,26 @@ async function initializeApp() {
 // Call initializeApp to start loading data and initializing the application
 initializeApp();
 
+// Function to calculate calories burned based on activity
+function calculateCaloriesBurned(activity, duration, weight) {
+  // Find activity in activities array
+  const selectedActivity = activities.find(
+    (item) => item.name.toLowerCase() === activity.toLowerCase()
+  );
+  if (!selectedActivity) {
+    console.error(`Activity '${activity}' not found.`);
+    return 0;
+  }
+
+  const caloriesPerMinute = selectedActivity.caloriesPerMinute;
+  return caloriesPerMinute * duration;
+}
+
+// Function to calculate BMR using Revised Harris-Benedict Equation (1984 revision)
+function calculateBMR(weight, height) {
+  return 88.362 + 13.397 * weight + 4.799 * height - 5.677 * 25; // Example calculation
+}
+
 // Function to calculate calories based on selected food and activity
 function calculateCalories() {
   // Check if foods and activities are loaded
@@ -47,7 +67,7 @@ function calculateCalories() {
     return;
   }
 
-  // Rest of your calculateCalories function logic
+  // Retrieve inputs
   const selectedFoodName = document.getElementById("foodInput").value.trim();
   const selectedActivity = document
     .getElementById("activityInput")
@@ -62,7 +82,7 @@ function calculateCalories() {
     return;
   }
 
-  // Calculate BMR using Revised Harris-Benedict Equation (1984 revision)
+  // Calculate BMR using Revised Harris-Benedict Equation
   const bmr = calculateBMR(weight, height);
 
   // Find selected food's calories
@@ -81,40 +101,18 @@ function calculateCalories() {
   // Calculate net calories
   const netCalories = foodCalories - caloriesBurned;
 
-  // Display result
+  // Display result in HTML
   const resultElement = document.getElementById("caloriesResult");
   if (resultElement) {
     resultElement.innerHTML = `
-            <p><strong>Calories Consumed from ${selectedFoodName}: </strong>${foodCalories} kcal</p>
-            <p><strong>Calories Burned from ${selectedActivity} (${duration} minutes): </strong>${caloriesBurned} kcal</p>
-            <p><strong>Net Calories: </strong>${netCalories} kcal</p>
-            <p><strong>BMR (Basal Metabolic Rate): </strong>${bmr.toFixed(
-              2
-            )} kcal/day</p>
-        `;
+      <p><strong>Calories Consumed from ${selectedFoodName}: </strong>${foodCalories} kcal</p>
+      <p><strong>Calories Burned from ${selectedActivity} (${duration} minutes): </strong>${caloriesBurned} kcal</p>
+      <p><strong>Net Calories: </strong>${netCalories} kcal</p>
+      <p><strong>BMR (Basal Metabolic Rate): </strong>${bmr.toFixed(
+        2
+      )} kcal/day</p>
+    `;
   } else {
     console.error("caloriesResult element not found.");
   }
-}
-
-// Function to calculate BMR using Revised Harris-Benedict Equation (1984 revision)
-function calculateBMR(weight, height) {
-  return 88.362 + 13.397 * weight + 4.799 * height - 5.677 * 25; // Example calculation
-}
-
-// Function to calculate calories burned based on activity
-function calculateCaloriesBurned(activity, duration, weight) {
-  // Placeholder logic, replace with actual formula based on activity type
-  let caloriesPerMinute = 0;
-  switch (activity.toLowerCase()) {
-    case "running":
-      caloriesPerMinute = 10; // Example calories burned per minute for running
-      break;
-    case "walking":
-      caloriesPerMinute = 5; // Example calories burned per minute for walking
-      break;
-    default:
-      caloriesPerMinute = 0; // Default to 0 if activity not recognized
-  }
-  return caloriesPerMinute * duration; // Calculate total calories burned
 }

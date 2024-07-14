@@ -1,7 +1,20 @@
 {
   "activities": [
-    { "name": "Running" },
-    { "name": "Walking" },
-    { "name": "Swimming" }
+    {
+      "name": "running",
+      "caloriesPerMinute": 10
+    },
+    {
+      "name": "walking",
+      "caloriesPerMinute": 5
+    },
+    {
+      "name": "cycling",
+      "caloriesPerMinute": 8
+    },
+    {
+      "name": "swimming",
+      "caloriesPerMinute": 12
+    }
   ]
 }
