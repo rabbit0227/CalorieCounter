@@ -1,0 +1,7 @@
+{
+  "activities": [
+    { "name": "Running" },
+    { "name": "Walking" },
+    { "name": "Swimming" }
+  ]
+}
