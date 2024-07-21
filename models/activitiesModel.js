@@ -16,5 +16,5 @@ const activitiesSchema = mongoose.Schema(
     }
 );
 
-const Activities = mongoose.model('Foods', activitiesSchema);
+const Activities = mongoose.model('Activities', activitiesSchema);
 module.exports = Activities; 

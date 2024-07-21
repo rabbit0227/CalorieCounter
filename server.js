@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const User = require('./models/userModel')
 const Foods = require('./models/foodsModel')
-//const Activities = require('./models/activitiesModel')
+const Activities = require('./models/activitiesModel')
 
 
 const app = express();
@@ -11,6 +11,10 @@ app.use(express.urlencoded({extended : false}));
 
 
 app.use(express.json());
+
+
+
+
 
 // ROOT ROUTES
 
@@ -150,6 +154,78 @@ app.get('/', (req, res)=> {
                 return res.status(404).json({message: `cannot find any user with ID ${id}`});
             }
             res.status(200).json(food);
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    })
+
+
+
+
+
+// ACTIVITIES ROUTES
+    
+    // GET ALL
+
+    app.get('/activities', async(req,res) =>{
+        try {
+            const activities = await Activities.find({});
+            res.status(200).json(activities);
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    })
+
+    // GET BY ID
+
+    app.get('/activities/:id', async(req,res) =>{
+        try {
+            const {id} = req.params;
+            const activity = await Activities.findById(id);
+            res.status(200).json(activity);
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    })
+
+    // POST
+
+    app.post('/activities', async(req, res) =>{
+        try {
+            const activity = await Activities.create(req.body);
+            res.status(200).json(activity);
+        } catch (error) {
+            console.log(err.message);
+            res.status(500).json({message: error.message});
+        }
+    })
+
+    // PUT
+
+    app.put('/activities/:id', async(req,res) => {
+        try {
+            const {id} = req.params;
+            const activity = await Activities.findByIdAndUpdate(id, req.body);
+            // we cannot find any user in database
+            if(!activity){
+                return res.status(404).json({message:  `cannot find any activity with ID ${id}`})
+            }
+            const updatedActivities = await Activities.findById(id);
+            res.status(200).json(updatedActivities);
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    })
+
+    // DELETE 
+    app.delete('/activities/:id', async(req,res) => {
+        try {
+            const {id} = req.params;
+            const activity = await Activities.findByIdAndDelete(id);
+            if(!activity){
+                return res.status(404).json({message: `cannot find any activity with ID ${id}`});
+            }
+            res.status(200).json(activity);
         } catch (error) {
             res.status(500).json({message: error.message});
         }
