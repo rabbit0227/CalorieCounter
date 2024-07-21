@@ -5,7 +5,7 @@ let activities = [];
 // Function to fetch and load food data from JSON
 async function loadFoods() {
   try {
-    const response = await fetch("./data/foods.json");
+    const response = await fetch("../data/foods.json");
     const data = await response.json();
     foods = data;
   } catch (error) {
@@ -16,7 +16,7 @@ async function loadFoods() {
 // Function to fetch and load activity data from JSON
 async function loadActivities() {
   try {
-    const response = await fetch("./data/activities.json");
+    const response = await fetch("../data/activities.json");
     const data = await response.json();
     activities = data.activities; // Assign activities array from JSON
   } catch (error) {
