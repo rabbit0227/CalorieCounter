@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calorie Tracker</title>
+    <link href="./output.css" rel="stylesheet" />
+    <style>
+      /* Custom background style */
+      .background {
+        background-image: url("background1.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body class="background bg-gray-900 text-white">
+    <header class="bg-white/30 backdrop-blur-md p-4 fixed top-0 w-full z-10">
+      <nav class="max-w-7xl mx-auto flex items-center justify-between">
+        <!-- Left Side Links -->
+        <div class="flex items-center space-x-4">
+          <a
+            href="index.html"
+            class="text-2xl font-extrabold text-green-950 hover:text-gray-400 px-4 py-2 rounded-full border-2 border-green-300 hover:bg-gray-200"
+            >Home</a
+          >
+          <a
+            href="calorieCalculator.html"
+            class="hover:text-gray-400 text-green-950 font-extrabold px-4 py-2 rounded-full border-2 border-green-300 hover:bg-gray-200"
+            >Calories</a
+          >
+          <a
+            href="about.html"
+            class="hover:text-gray-400 text-green-950 font-extrabold px-4 py-2 rounded-full border-2 border-green-300 hover:bg-gray-200"
+            >About</a
+          >
+        </div>
+        <!-- Sign In Button -->
+        <div>
+          <button
+            id="authButton"
+            class="hover:text-gray-400 text-blue-950 font-extrabold px-4 py-2 rounded-full border-2 border-blue-600 hover:bg-gray-200"
+          >
+            Sign In
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="pt-20 flex items-center justify-center min-h-screen relative">
+      <div
+        class="max-w-lg mx-auto bg-white/30 text-green-600 p-6 rounded-md shadow-lg backdrop-blur-md"
+      >
+        <h1 class="text-2xl font-bold mb-4 text-center">Calorie Tracker</h1>
+
+        <div class="mb-4">
+          <label for="foodInput" class="block text-sm font-medium text-gray-700"
+            >Food:</label
+          >
+          <input
+            type="text"
+            id="foodInput"
+            autocomplete="off"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="Type to search..."
+          />
+          <ul id="foodInputDropdown" class="autocomplete-dropdown hidden"></ul>
+        </div>
+
+        <div class="mb-4">
+          <label
+            for="activityInput"
+            class="block text-sm font-medium text-gray-700"
+            >Activity:</label
+          >
+          <input
+            type="text"
+            id="activityInput"
+            autocomplete="off"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="Type to search..."
+          />
+          <ul
+            id="activityInputDropdown"
+            class="autocomplete-dropdown hidden"
+          ></ul>
+        </div>
+
+        <div class="mb-4">
+          <label for="duration" class="block text-sm font-medium text-gray-700"
+            >Duration (minutes):</label
+          >
+          <input
+            type="number"
+            id="duration"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="Enter duration..."
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="weight" class="block text-sm font-medium text-gray-700"
+            >Weight (kg):</label
+          >
+          <input
+            type="number"
+            id="weight"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="Enter weight..."
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="height" class="block text-sm font-medium text-gray-700"
+            >Height (cm):</label
+          >
+          <input
+            type="number"
+            id="height"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="Enter height..."
+          />
+        </div>
+
+        <button
+          onclick="calculateCalories()"
+          class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        >
+          Calculate Calories
+        </button>
+
+        <div id="caloriesResult" class="mt-4"></div>
+      </div>
+    </main>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
