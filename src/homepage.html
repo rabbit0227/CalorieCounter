@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage | Calorie Counter</title>
+    <link rel="icon" type="image/png" href="../assets/favicon.png"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="../output.css" />
+</head>
+<!--bg-gradient-to-t from-slate-950 to-slate-400 flex flex-col-->
+<body class="font-poppins bg-teal-50 h-screen flex flex-col">
+    <header class="bg-white py-2 shadow-custom z-[1000]">
+        <nav class="flex items-center justify-between w-[92%] mx-auto">
+            <!--<div class="w-44 font-bold text-xl">Calorie Counter</div>-->
+            <div class="flex items-center">
+                <img src="../assets/logo.png" class="w-20"></img>
+                <span class="ml-3 text-xl font-bold">Calorie Counter</span>
+            </div>
+            <div class="nav-links duration-200 md:static absolute bg-white md:min-h-fit min-h-[30vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
+                <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+                    <li>
+                        <a href="https://github.com/rabbit0227/CalorieCounter" class="hover:text-gray-500 text-xl font-medium" href="#" target="_blank">Github</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-gray-500 text-xl font-medium" href="#">About Us</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-gray-500 text-xl font-medium" href="#">Calculate Calories</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="px-5 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200">Login</button>
+                <i id="menu" class="bx bx-menu text-3xl cursor-pointer md:hidden"></i>
+            </div>
+        </nav>
+
+    </header>
+    <!--<header class="bg-white w-full fixed top-0 right-0 z-[1000] flex items-center justify-between
+                    shadow-custom px-5 py-8 transition-all duration-500 ">
+        <a href="#">Calorie Counter</a>
+        <div class="bx bx-menu text-2xl text-red-400"><i class="bx bx-x"></i></div>
+
+        <!--Navbar- ->
+        <ul class="flex items-center gap-x-2">
+            <li><a href="#home" class="text-base rounded-5rem font-medium px-2 py-4 hover:bg-lime-200 hover:rounded-5rem  hover:text-white transition-colors duration-500">Home</a></li>
+            <li><a href="#counter" class="text-base rounded-5rem font-medium px-2 py-4 hover:bg-lime-200 hover:rounded-5rem  hover:text-white transition-colors duration-500">Counter</a></li>
+            <li><a href="#about" class="text-base rounded-5rem font-medium px-2 py-4 hover:bg-lime-200 hover:rounded-5rem  hover:text-white transition-colors duration-500">About</a></li>
+            <li><a href="#login" class="text-base rounded-5rem font-medium px-2 py-4 hover:bg-lime-200 hover:rounded-5rem  hover:text-white transition-colors duration-500">Log In</a></li>
+            <li><a href="#signup" class="text-base rounded-5rem font-medium px-2 py-4 hover:bg-lime-200 hover:rounded-5rem  hover:text-white transition-colors duration-500">Sign Up</a></li>
+        </ul>
+    </header> -->
+    
+    <main class="flex-grow flex flex-col items-center justify-center text-2xl md:text-4xl">
+        <div class="flex flex-col-reverse md:flex-row items-center mt-10">
+            <div class="mt-4 md:mt-0 md:mr-8">
+                <p class="text-center md:text-left">Count Your Way to a Healthier You</p>
+                <button onclick="window.location.href='homepage.html'" class="animate-bounce px-3 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200 mt-6">Get Started Now</button>
+            </div>
+            <div>
+                <img src="../assets/note-taking-removebg-preview.png" class="max-w-full h-auto">
+            </div>
+        </div>
+        <div class="mt-40 w-[92%] mx-auto">
+            <!--<h2 class="text-center md:text-left text-2xl md:text-3xl font-semibold mb-6">Additional Content</h2>
+            <!--<p class="text-center md:text-left mb-4">This is where you can add more content that will be placed below the
+                initial section with the image and slogan.</p>
+            <p class="text-center md:text-left">You can add as many sections as you need here, and they will always appear
+                below the main image and slogan.</p> -->
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-200 mt-40">
+        <div class="container mx-auto py-14 px-6">
+            <div class="grid md:grid-cols-12 grid-cols-1 gap-7">
+                <div class="lg:col-span-2 md:col-span-4 col-span-12">
+                    <h5 class="tracking-wide text-gray-100 font-bold">
+                        <img class="w-20" src="../assets/logo-removebg-preview.png"></img>
+                        Calorie Counter</h5>
+                    <ul class="list-none mt-6 space-y-2">
+                        <li>
+                            "Count Your Way to a Healthier You."
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-2 md:col-span-4 col-span-12">
+                    <h5 class="tracking-wide text-gray-100 font-semibold">Contributors</h5>
+                    <ul class="list-none mt-6 space-y-2">
+                        <li>
+                            <a href="https://github.com/rabbit0227" target="_blank" class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                                Anthony Barrameda Tsangarides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/msierras" target="_blank" class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                                Melvin Sierra
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/UebokGR" target="_blank" class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                                David Valdez
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/squeezed-lemon" target="_blank" class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                                Mohammed A. Al-Muqsit
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-2 md:col-span-4 col-span-12">
+                    <h5 class="tracking-wide text-gray-100 font-semibold">Quick Links</h5>
+                    <ul class="list-none mt-6 space-y-2">
+                        <li>
+                            <a href="https://github.com/rabbit0227/CalorieCounter" target="_blank"
+                                class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                                Github
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"
+                                class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"
+                                class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                                Calculate Calories
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        <div class="border-t border-slate-700">
+            <div class="md:text-left text-center container mx-auto py-7 px-6">
+                <p class="mb-0">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    Calorie Counter
+                </p>
+            </div>
+        </div>
+
+    </footer>
+    
+   
+    <script src="../scripts/homepage.js"></script>
+</body>
+</html>
