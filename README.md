@@ -26,3 +26,4 @@ To run the website locally, follow these steps:
    ```bash
    git clone https://github.com/your-username/calorie-tracker.git
    cd calorie-tracker
+   ```

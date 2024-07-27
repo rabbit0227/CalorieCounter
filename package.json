@@ -1,0 +1,11 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "build:css": "npx tailwindcss -c tailwind.config.js -i input.css -o output.css",
+    "watch:css": "npx tailwindcss -c tailwind.config.js -i input.css -o output.css -w"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.7"
+  }
+}
