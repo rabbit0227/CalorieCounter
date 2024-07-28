@@ -1,25 +1,124 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>signup</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link href="../output.css" rel="stylesheet" />
   </head>
-  <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
+  <body
+    class="bg-cover bg-center bg-no-repeat bg-gray-900 text-white"
+    style="background-image: url(&quot;../assets/background1.jpg&quot;)"
+  >
+    <header class="bg-white/30 backdrop-blur-md p-4 fle top-0 w-full">
+      <nav class="max-w-7xl mx-auto flex items-center justify-between">
+        <!-- Left Side Links -->
+        <div class="flex items-center space-x-4">
+          <a
+            href="index.html"
+            class="text-2xl font-extrabold text-green-950 hover:text-gray-400 px-4 py-2 rounded-full border-2 border-green-300 hover:bg-gray-200"
+            >Home</a
+          >
+          <a
+            href="calorieCalculator.html"
+            class="hover:text-gray-400 text-green-950 font-extrabold px-4 py-2 rounded-full border-2 border-green-300 hover:bg-gray-200"
+            >Calories</a
+          >
+          <a
+            href="about.html"
+            class="hover:text-gray-400 text-green-950 font-extrabold px-4 py-2 rounded-full border-2 border-green-300 hover:bg-gray-200"
+            >About</a
+          >
+        </div>
+        <!-- Sign In Button -->
+        <div>
+          <a
+            id="authButton"
+            href="signin.html"
+            class="text-blue-950 font-extrabold px-4 py-2 rounded-full border-2 border-blue-600 hover:bg-gray-200 hover:text-gray-400"
+          >
+            Sign In
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main class="flex items-center justify-center min-h-screen relative">
+      <div
+        class="max-w-lg mx-auto bg-white/30 text-green-600 p-6 rounded-md shadow-lg backdrop-blur-md"
+      >
+        <h1 class="text-2xl text-colorblack font-bold mb-4 text-center">
+          Sign Up
+        </h1>
 
-    <script src="" async defer></script>
+        <form id="signupForm">
+          <div class="mb-4">
+            <label
+              for="signupUsername"
+              class="block text-sm font-medium text-gray-700"
+            >
+              Username:
+            </label>
+            <input
+              type="text"
+              id="signupUsername"
+              autocomplete="off"
+              class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label
+              for="signupEmail"
+              class="block text-sm font-medium text-gray-700"
+            >
+              Email:
+            </label>
+            <input
+              type="email"
+              id="signupEmail"
+              autocomplete="off"
+              class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label
+              for="signupPassword"
+              class="block text-sm font-medium text-gray-700"
+            >
+              Password:
+            </label>
+            <input
+              type="password"
+              id="signupPassword"
+              class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          >
+            Sign Up
+          </button>
+
+          <div class="mt-4 text-center">
+            <p class="text-gray-400">
+              Already have an account?
+              <a href="signin.html" class="text-blue-300 hover:underline"
+                >Sign In</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="../scripts/main.js"></script>
   </body>
 </html>
