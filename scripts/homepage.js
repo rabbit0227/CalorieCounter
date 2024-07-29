@@ -8,3 +8,4 @@ document.getElementById('menu').addEventListener('click', function() {
 document.getElementById("myButton").addEventListener("click", function() {
   window.location.href = 'calorieCalculator.html';
 });
+
