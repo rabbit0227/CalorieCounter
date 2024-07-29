@@ -75,7 +75,7 @@
             id="activityInput"
             autocomplete="off"
             class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
-            placeholder="Type to search..."
+            placeholder="running"
           />
           <ul
             id="activityInputDropdown"
@@ -91,7 +91,7 @@
             type="number"
             id="duration"
             class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
-            placeholder="Enter duration..."
+            placeholder="duration"
           />
         </div>
 
@@ -103,7 +103,7 @@
             type="number"
             id="weight"
             class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
-            placeholder="Enter weight..."
+            placeholder="weight..."
           />
         </div>
 
@@ -115,17 +115,18 @@
             type="number"
             id="height"
             class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
-            placeholder="Enter height..."
+            placeholder="height..."
           />
         </div>
 
-        <button
-          onclick="calculateCalories()"
-          class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-        >
-          Calculate Calories
-        </button>
-
+        <div class="mb-4">
+          <button
+            onclick="calculateCalories()"
+            class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          >
+            Calculate Calories
+          </button>
+        </div>
         <div id="caloriesResult" class="mt-4"></div>
       </div>
     </main>

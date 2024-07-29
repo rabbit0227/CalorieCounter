@@ -1,23 +1,13 @@
 {
-  "name": "project",
+  "name": "caloriecounter",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "The Calorie Tracker website allows users to track their calorie intake and expenditure based on selected foods and activities. It calculates net calories and provides an estimate of Basal Metabolic Rate (BMR) using the Revised Harris-Benedict Equation (1984 revision).",
+  "main": "tailwind.config.js",
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node server.js",
-    "dev": "nodemon server.js",
-    "build": "npx tailwindcss -i ./input.css -o ./output.css --watch"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "express": "^4.19.2",
-    "mongoose": "^8.5.1",
-    "nodemon": "^3.1.4"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.7"
-  }
+  "license": "ISC"
 }

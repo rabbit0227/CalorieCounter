@@ -6,9 +6,11 @@ let isLoggedIn = false; // Track login status
 // Function to fetch and load food data from the server
 async function loadFoods() {
   try {
-    const response = await fetch("/foods"); // Updated to use server route
+    const response = await fetch("http://localhost:3000/foods");
+    console.log("Foods response status:", response.status); // Log status
     if (!response.ok) throw new Error("Failed to load foods.");
     foods = await response.json();
+    console.log("Foods loaded:", foods); // Log the loaded foods
   } catch (error) {
     console.error("Error loading foods:", error);
   }
@@ -17,9 +19,11 @@ async function loadFoods() {
 // Function to fetch and load activity data from the server
 async function loadActivities() {
   try {
-    const response = await fetch("/activities"); // Updated to use server route
+    const response = await fetch("http://localhost:3000/activities"); // Updated to use server route
+    console.log("Activities response status:", response.status); // Log status
     if (!response.ok) throw new Error("Failed to load activities.");
     activities = await response.json();
+    console.log("activities loaded:", activities); // Log the loaded foods
   } catch (error) {
     console.error("Error loading activities:", error);
   }
@@ -36,29 +40,34 @@ async function initializeApp() {
     console.log("Login status:", isLoggedIn); // Debug log
 
     updateAuthButton(); // Update the button based on login status
+
+    // Enable calculate button after data is loaded
+    const calculateButton = document.querySelector(
+      "button[onclick='calculateCalories()']"
+    );
+    if (calculateButton) {
+      calculateButton.disabled = false;
+    }
   } catch (error) {
     console.error("Failed to load data:", error);
   }
 }
 
 // Function to calculate calories burned based on activity
-function calculateCaloriesBurned(activity, duration, weight) {
-  // Find activity in activities array
+function calculateCaloriesBurned(activityName, duration) {
   const selectedActivity = activities.find(
-    (item) => item.name.toLowerCase() === activity.toLowerCase()
+    (item) => item.name.toLowerCase() === activityName.toLowerCase()
   );
   if (!selectedActivity) {
-    console.error(`Activity '${activity}' not found.`);
+    console.error(`Activity '${activityName}' not found.`);
     return 0;
   }
 
   const caloriesPerMinute = selectedActivity.caloriesPerMinute;
   return caloriesPerMinute * duration;
 }
-
 // Function to calculate BMR using Revised Harris-Benedict Equation
 function calculateBMR(weight, height, age = 25, gender = "male") {
-  // Modify BMR calculation based on gender
   if (gender === "female") {
     return 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
   }
@@ -75,15 +84,15 @@ function calculateCalories() {
 
   // Retrieve inputs
   const selectedFoodName = document.getElementById("foodInput").value.trim();
-  const selectedActivity = document
+  const selectedActivityName = document
     .getElementById("activityInput")
     .value.trim();
+  console.log("Selected Activity Name:", selectedActivityName);
   const duration = parseInt(document.getElementById("duration").value) || 0;
   const weight = parseFloat(document.getElementById("weight").value) || 0;
   const height = parseFloat(document.getElementById("height").value) || 0;
-  const age = parseInt(document.getElementById("age").value) || 25;
-  const gender =
-    document.querySelector('input[name="gender"]:checked')?.value || "male";
+  const age = 25;
+  const gender = "male"; // Implicitly set to male
 
   // Validate inputs
   if (weight <= 0 || height <= 0) {
@@ -102,7 +111,7 @@ function calculateCalories() {
 
   // Calculate calories burned from activity
   const caloriesBurned = calculateCaloriesBurned(
-    selectedActivity,
+    selectedActivityName,
     duration,
     weight
   );
@@ -114,17 +123,18 @@ function calculateCalories() {
   const resultElement = document.getElementById("caloriesResult");
   if (resultElement) {
     resultElement.innerHTML = `
-    <p class="text-green-500"><strong>Calories Consumed from ${selectedFoodName}: </strong>${foodCalories} kcal</p>
-    <p class="text-green-500"><strong>Calories Burned from ${selectedActivity} (${duration} minutes): </strong>${caloriesBurned} kcal</p>
-    <p class="text-green-500"><strong>Net Calories: </strong>${netCalories} kcal</p>
-    <p class="text-green-500"><strong>BMR (Basal Metabolic Rate): </strong>${bmr.toFixed(2)} kcal/day</p>
-  `;
+      <p class="text-green-500"><strong>Calories Consumed from ${selectedFoodName}: </strong>${foodCalories} kcal</p>
+      <p class="text-green-500"><strong>Calories Burned from ${selectedActivityName} (${duration} minutes): </strong>${caloriesBurned} kcal</p>
+      <p class="text-green-500"><strong>Net Calories: </strong>${netCalories} kcal</p>
+      <p class="text-green-500"><strong>BMR (Basal Metabolic Rate): </strong>${bmr.toFixed(2)} kcal/day</p>
+    `;
   } else {
     console.error("caloriesResult element not found.");
   }
 }
 
 // Update the sign-in/sign-out button text based on login status
+
 function updateAuthButton() {
   const authButton = document.getElementById("authButton");
   console.log("Updating auth button, isLoggedIn:", isLoggedIn); // Debug log
@@ -145,101 +155,101 @@ function updateAuthButton() {
   }
 }
 
-// Handle sign out
-async function signOut() {
-  try {
-    const response = await fetch("/api/signout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+// // Handle sign out
+// async function signOut() {
+//   try {
+//     const response = await fetch("/api/signout", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
 
-    if (response.ok) {
-      localStorage.removeItem("isLoggedIn");
-      isLoggedIn = false;
-      updateAuthButton();
-      alert("Signed out successfully");
-    } else {
-      throw new Error("Failed to sign out.");
-    }
-  } catch (error) {
-    alert(`Error signing out: ${error.message}`);
-  }
-}
+//     if (response.ok) {
+//       localStorage.removeItem("isLoggedIn");
+//       isLoggedIn = false;
+//       updateAuthButton();
+//       alert("Signed out successfully");
+//     } else {
+//       throw new Error("Failed to sign out.");
+//     }
+//   } catch (error) {
+//     alert(`Error signing out: ${error.message}`);
+//   }
+// }
 
 // Event listener for sign-in page
 document.addEventListener("DOMContentLoaded", () => {
-  const signinForm = document.getElementById("signinForm");
-  const signupForm = document.getElementById("signupForm");
+  // const signinForm = document.getElementById("signinForm");
+  // const signupForm = document.getElementById("signupForm");
 
-  if (signinForm) {
-    signinForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
+  // if (signinForm) {
+  //   signinForm.addEventListener("submit", async (event) => {
+  //     event.preventDefault();
 
-      const email = document.getElementById("signinEmail").value.trim();
-      const password = document.getElementById("signinPassword").value;
+  //     const email = document.getElementById("signinEmail").value.trim();
+  //     const password = document.getElementById("signinPassword").value;
 
-      if (email === "" || password === "") {
-        alert("Please fill out both fields.");
-        return;
-      }
+  //     if (email === "" || password === "") {
+  //       alert("Please fill out both fields.");
+  //       return;
+  //     }
 
-      try {
-        const response = await fetch("/api/signin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
+  //     try {
+  //       const response = await fetch("/api/signin", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ email, password }),
+  //       });
 
-        const result = await response.json();
+  //       const result = await response.json();
 
-        if (response.ok && result.success) {
-          localStorage.setItem("isLoggedIn", "true");
-          window.location.href = "calorieCalculator.html";
-        } else {
-          alert(result.message || "An error occurred");
-        }
-      } catch (error) {
-        alert(`An error occurred: ${error.message}`);
-      }
-    });
-  }
+  //       if (response.ok && result.success) {
+  //         localStorage.setItem("isLoggedIn", "true");
+  //         window.location.href = "calorieCalculator.html";
+  //       } else {
+  //         alert(result.message || "An error occurred");
+  //       }
+  //     } catch (error) {
+  //       alert(`An error occurred: ${error.message}`);
+  //     }
+  //   });
+  // }
 
-  if (signupForm) {
-    signupForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
+  // if (signupForm) {
+  //   signupForm.addEventListener("submit", async (event) => {
+  //     event.preventDefault();
 
-      const email = document.getElementById("signupEmail").value.trim();
-      const password = document.getElementById("signupPassword").value;
+  //     const email = document.getElementById("signupEmail").value.trim();
+  //     const password = document.getElementById("signupPassword").value;
 
-      if (email === "" || password === "") {
-        alert("Please fill out both fields.");
-        return;
-      }
+  //     if (email === "" || password === "") {
+  //       alert("Please fill out both fields.");
+  //       return;
+  //     }
 
-      try {
-        const response = await fetch("/api/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
+  //     try {
+  //       const response = await fetch("/api/signup", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ email, password }),
+  //       });
 
-        if (response.ok) {
-          window.location.href = "signin.html";
-        } else {
-          const error = await response.json();
-          alert(`Error: ${error.message}`);
-        }
-      } catch (error) {
-        alert(`An error occurred: ${error.message}`);
-      }
-    });
-  }
+  //       if (response.ok) {
+  //         window.location.href = "signin.html";
+  //       } else {
+  //         const error = await response.json();
+  //         alert(`Error: ${error.message}`);
+  //       }
+  //     } catch (error) {
+  //       alert(`An error occurred: ${error.message}`);
+  //     }
+  //   });
+  // }
 
   // Initialize app if it's the main page
   if (document.getElementById("foodInput")) {
@@ -248,6 +258,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function calculateCalories() {
     console.log("Calculate Calories function called");
-    // Existing code
+
+    // Check if foods and activities are loaded
+    if (foods.length === 0 || activities.length === 0) {
+      console.error("Foods or activities not loaded.");
+      return;
+    }
+
+    // Retrieve inputs
+    const selectedFoodName = document.getElementById("foodInput").value.trim();
+    const selectedActivity = document
+      .getElementById("activityInput")
+      .value.trim();
+    const duration = parseInt(document.getElementById("duration").value) || 0;
+    const weight = parseFloat(document.getElementById("weight").value) || 0;
+    const height = parseFloat(document.getElementById("height").value) || 0;
+    const age = parseInt(document.getElementById("age").value) || 25;
+    const gender =
+      document.querySelector('input[name="gender"]:checked')?.value || "male";
+
+    // Validate inputs
+    if (weight <= 0 || height <= 0) {
+      alert("Please enter valid weight and height values.");
+      return;
+    }
+
+    // Calculate BMR
+    const bmr = calculateBMR(weight, height, age, gender);
+
+    // Find selected food's calories
+    const food = foods.find(
+      (item) => item.name.toLowerCase() === selectedFoodName.toLowerCase()
+    );
+    const foodCalories = food ? food.calories : 0;
+
+    // Calculate calories burned from activity
+    const caloriesBurned = calculateCaloriesBurned(
+      selectedActivity,
+      duration,
+      weight
+    );
+
+    // Calculate net calories
+    const netCalories = foodCalories - caloriesBurned;
+
+    // Display result in HTML
+    const resultElement = document.getElementById("caloriesResult");
+    if (resultElement) {
+      resultElement.innerHTML = `
+        <p class="text-green-500"><strong>Calories Consumed from ${selectedFoodName}: </strong>${foodCalories} kcal</p>
+        <p class="text-green-500"><strong>Calories Burned from ${selectedActivity} (${duration} minutes): </strong>${caloriesBurned} kcal</p>
+        <p class="text-green-500"><strong>Net Calories: </strong>${netCalories} kcal</p>
+        <p class="text-green-500"><strong>BMR (Basal Metabolic Rate): </strong>${bmr.toFixed(2)} kcal/day</p>
+      `;
+    } else {
+      console.error("caloriesResult element not found.");
+    }
   }
 });

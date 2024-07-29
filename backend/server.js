@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const User = require("./models/userModel");
 const Foods = require("./models/foodsModel");
 const Activities = require("./models/activitiesModel");
@@ -7,6 +8,12 @@ const Activities = require("./models/activitiesModel");
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 
+app.use(express.json());
+
+// Use CORS middleware
+app.use(cors());
+
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // ROOT ROUTES
@@ -192,7 +199,7 @@ app.post("/activities", async (req, res) => {
     const activity = await Activities.create(req.body);
     res.status(200).json(activity);
   } catch (error) {
-    console.log(err.message);
+    console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 });
