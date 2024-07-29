@@ -63,7 +63,7 @@ function calculateCaloriesBurned(activityName, duration) {
     return 0;
   }
 
-  const caloriesPerMinute = selectedActivity.caloriesPerMinute;
+  const caloriesPerMinute = selectedActivity.calories_bpm;
   return caloriesPerMinute * duration;
 }
 // Function to calculate BMR using Revised Harris-Benedict Equation
