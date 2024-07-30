@@ -13,7 +13,7 @@ const app = express();
 // Use CORS middleware
 app.use(
   cors({
-    origin: "https://calorie-counter-puce-theta.vercel.app", // Ensure this is correct
+    origin: "https://calorie-counter-ruby.vercel.app", // Ensure this is correct
   })
 );
 

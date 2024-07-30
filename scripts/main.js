@@ -3,7 +3,7 @@ let foods = [];
 let activities = [];
 let isLoggedIn = false; // Track login status
 
-const apiUrl = "https://calorie-counter-puce-theta.vercel.app";
+const apiUrl = "https://calorie-counter-ruby.vercel.app";
 
 // Function to fetch and load food data from the server
 async function loadFoods() {
