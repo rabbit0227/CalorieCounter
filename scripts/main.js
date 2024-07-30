@@ -3,7 +3,7 @@ let foods = [];
 let activities = [];
 let isLoggedIn = false; // Track login status
 
-const apiUrl = "calorie-counter-2i3uhh64i-rabbits-projects-cfa75ee8.vercel.app";
+const apiUrl = "calorie-counter-weld.vercel.app";
 
 // Function to fetch and load food data from the server
 async function loadFoods() {
