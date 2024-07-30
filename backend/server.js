@@ -16,7 +16,7 @@ const app = express();
 // Use CORS middleware
 app.use(
   cors({
-    origin: "https://calorie-counter-mjak.vercel.app", // Allow only this origin
+    origin: "https://calorie-counter-weld.vercel.app", // Allow only this origin
   })
 );
 
