@@ -3,9 +3,13 @@
   "builds": [
     {
       "src": "backend/server.js",
-      "use": "@vercel/node",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "input.css",
+      "use": "@vercel/static-build",
       "config": {
-        "includeFiles": ["src/**", "scripts/**"]
+        "distDir": "output.css"
       }
     }
   ],
@@ -13,6 +17,10 @@
     {
       "src": "/(.*)",
       "dest": "backend/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/src/$1"
     }
   ]
 }
