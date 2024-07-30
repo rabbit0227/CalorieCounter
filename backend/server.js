@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
-const path = require('path');
+//const bcrypt = require('bcrypt');
+const path = require("path");
 const cors = require("cors");
 const User = require("./models/userModel");
 const Foods = require("./models/foodsModel");
@@ -18,13 +18,13 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, '../src')));
+app.use(express.static(path.join(__dirname, "../src")));
 // ROOT ROUTES
 
 // GETS
 app.get("/", (req, res) => {
   //res.send("Hello node API");
-  res.sendFile(path.join(__dirname, '../src/index.html'));
+  res.sendFile(path.join(__dirname, "../src/index.html"));
 });
 
 // USER ROUTES
@@ -61,12 +61,10 @@ app.post("/user", async (req, res) => {
   } catch (error) {
     console.log(err.message);
     res.status(500).json({ message: error.message });
-  } 
-
+  }
 });
 
 app.post("/signup", async (req, res) => {
-
   try {
     const { username, password, email } = req.body;
 
@@ -74,20 +72,21 @@ app.post("/signup", async (req, res) => {
     const existingUser = await User.findOne({ username });
 
     if (existingUser) {
-      return res.status(400).send("Username already exists. Please choose a different username.");
+      return res
+        .status(400)
+        .send("Username already exists. Please choose a different username.");
     }
 
     // Create new user
     const user = await User.create({ username, password, email });
 
-    
     //res.status(201).json(user);
     //goes to the calculator
     res.redirect("/calorieCalculator.html");
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
-    }
+  }
 
   /*const data = {
     username: req.body.username,
@@ -106,7 +105,6 @@ app.post("/signup", async (req, res) => {
 });
 
 app.post("/signin", async (req, res) => {
-
   try {
     const { username, password } = req.body;
 
@@ -128,7 +126,7 @@ app.post("/signin", async (req, res) => {
 
     /*if (!isMatch) {
       return res.status(400).send("Username or password is incorrect.");
-    }*/ 
+    }*/
 
     // Successful sign-in
     res.redirect("/calorieCalculator.html");
@@ -136,9 +134,7 @@ app.post("/signin", async (req, res) => {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
-
 });
-
 
 // PUT
 
