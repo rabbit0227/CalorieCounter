@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch(`${apiUrl}/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("signupPassword").value;
 
       try {
-        const response = await fetch("http://localhost:3000/register", {
+        const response = await fetch(`${apiUrl}/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
