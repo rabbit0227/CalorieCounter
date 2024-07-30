@@ -3,43 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up | Calorie Counter</title>
+    <title>Calorie Tracker | Calorie Counter</title>
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="./output.css" rel="stylesheet" />
   </head>
-  <body class="font-poppins bg-teal-50 h-screen flex flex-col">
-    <header class="bg-white py-2 shadow-custom z-[1000]">
-        <nav class="flex items-center justify-between w-[92%] mx-auto">
-            <!--<div class="w-44 font-bold text-xl">Calorie Counter</div>-->
-            <div class="flex items-center">
-                <a href="./"><img src="./assets/logo.png" class="w-20"></img></a>
-                <span class="ml-3 text-xl font-bold">Calorie Counter</span>
-            </div>
-            <div
-                class="nav-links duration-200 md:static absolute bg-white md:min-h-fit min-h-[30vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
-                <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
-                    <li>
-                        <a href="https://github.com/rabbit0227/CalorieCounter"
-                            class="hover:text-gray-500 text-xl font-medium" href="#" target="_blank">Github</a>
-                    </li>
-                    <li>
-                        <a class="hover:text-gray-500 text-xl font-medium" href="aboutus.html">About Us</a>
-                    </li>
-                    <li>
-                        <a class="hover:text-gray-500 text-xl font-medium" href="calorieCalculator.html"
-                            >Calculate Calories</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="flex items-center gap-6">
-                <button class="px-5 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200" onclick="window.location.href='signin.html'">Login</button>
-                <i id="menu" class="bx bx-menu text-3xl cursor-pointer md:hidden"></i>
-            </div>
-        </nav>
-    
-    </header>
-    <!--<header class="bg-white/30 backdrop-blur-md p-4 fle top-0 w-full">
+  <body
+    class="font-poppins bg-cover bg-center bg-no-repeat bg-gray-900 text-black"
+    style="background-image: url(&quot;./assets/background1.jpg&quot;)"
+  >
+  <header class="bg-white py-2 shadow-custom z-[1000]">
+    <nav class="flex items-center justify-between w-[92%] mx-auto">
+      <!--<div class="w-44 font-bold text-xl">Calorie Counter</div>-->
+      <div class="flex items-center">
+        <a href="./"><img src="./assets/logo.png" class="w-20"></img></a>
+        <span class="ml-3 text-xl font-bold">Calorie Counter</span>
+      </div>
+      <div
+        class="nav-links duration-200 md:static absolute bg-white md:min-h-fit min-h-[30vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
+        <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+          <li>
+            <a href="https://github.com/rabbit0227/CalorieCounter" class="hover:text-gray-500 text-xl font-medium"
+              target="_blank">Github</a>
+          </li>
+          <li>
+            <a class="hover:text-gray-500 text-xl font-medium" href="aboutus.html">About Us</a>
+          </li>
+          <li>
+            <a class="hover:text-gray-500 text-xl font-medium" href="calorieCalculator.html" target="_blank">Calculate
+              Calories</a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex items-center gap-6">
+        <button id="logoutButton" class="px-5 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200">Logout</button>
+        <i id="menu" class="bx bx-menu text-3xl cursor-pointer md:hidden"></i>
+      </div>
+    </nav>
+  
+  </header>
+  
+   <!--- <header class="bg-white/30 backdrop-blur-md p-4 fle top-0 w-full">
       <nav class="max-w-7xl mx-auto flex items-center justify-between">
         <!-- Left Side Links 
         <div class="flex items-center space-x-4">
@@ -54,7 +58,7 @@
             >Calories</a
           >
           <a
-            href="about.html"
+            href="aboutus.html"
             class="hover:text-gray-400 text-green-950 font-extrabold px-4 py-2 rounded-full border-2 border-green-300 hover:bg-gray-200"
             >About</a
           >
@@ -71,84 +75,94 @@
         </div>
       </nav>
     </header> -->
+    
+    
     <main class="flex items-center justify-center min-h-screen relative">
       <div
         class="max-w-lg mx-auto bg-white/30 text-green-600 p-6 rounded-md shadow-lg backdrop-blur-md"
       >
         <h1 class="text-2xl text-colorblack font-bold mb-4 text-center">
-          Sign Up
+          Calorie Tracker
         </h1>
 
-        <form id="signupForm" action="/signup" method="post">
-          <div class="mb-4">
-            <label
-              for="signupUsername"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Username:
-            </label>
-            <input
-              type="text"
-              id="signupUsername"
-              name="username"
-              autocomplete="off"
-              class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
-              placeholder="Enter your username"
-              required
-            />
-          </div>
+        <div class="mb-4">
+          <label for="foodInput" class="block text-sm font-medium text-gray-700"
+            >Food:</label
+          >
+          <input
+            type="text"
+            id="foodInput"
+            autocomplete="off"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="burger"
+          />
+          <ul id="foodInputDropdown" class="autocomplete-dropdown hidden"></ul>
+        </div>
 
-          <div class="mb-4">
-            <label
-              for="signupEmail"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Email:
-            </label>
-            <input
-              type="email"
-              id="signupEmail"
-              name="email"
-              autocomplete="off"
-              class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
+        <div class="mb-4">
+          <label
+            for="activityInput"
+            class="block text-sm font-medium text-gray-700"
+            >Activity:</label
+          >
+          <input
+            type="text"
+            id="activityInput"
+            autocomplete="off"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="running"
+          />
+          <ul
+            id="activityInputDropdown"
+            class="autocomplete-dropdown hidden"
+          ></ul>
+        </div>
 
-          <div class="mb-4">
-            <label
-              for="signupPassword"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Password:
-            </label>
-            <input
-              type="password"
-              id="signupPassword"
-              name="password"
-              class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
-              placeholder="Enter your password"
-              required
-            />
-          </div>
+        <div class="mb-4">
+          <label for="duration" class="block text-sm font-medium text-gray-700"
+            >Duration (minutes):</label
+          >
+          <input
+            type="number"
+            id="duration"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="duration"
+          />
+        </div>
 
+        <div class="mb-4">
+          <label for="weight" class="block text-sm font-medium text-gray-700"
+            >Weight (kg):</label
+          >
+          <input
+            type="number"
+            id="weight"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="weight"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="height" class="block text-sm font-medium text-gray-700"
+            >Height (cm):</label
+          >
+          <input
+            type="number"
+            id="height"
+            class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
+            placeholder="height"
+          />
+        </div>
+
+        <div class="mb-4">
           <button
-            type="submit"
+            onclick="calculateCalories()"
             class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
           >
-            Sign Up
+            Calculate Calories
           </button>
-
-          <div class="mt-4 text-center">
-            <p class="text-gray-400">
-              Already have an account?
-              <a href="signin.html" class="text-blue-300 hover:underline"
-                >Sign In</a
-              >
-            </p>
-          </div>
-        </form>
+        </div>
+        <div id="caloriesResult" class="mt-4"></div>
       </div>
     </main>
 
@@ -205,12 +219,12 @@
                 </a>
               </li>
               <li>
-                <a href="aboutus" class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                <a href="aboutus.html" class="hover:text-gray-400 transition-all duration-500 ease-in-out">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="calorieCalculator" target="_blank"
+                <a href="calorieCalculator.html" target="_blank"
                   class="hover:text-gray-400 transition-all duration-500 ease-in-out">
                   Calculate Calories
                 </a>
@@ -234,5 +248,6 @@
     
     </footer>
     <script src="/scripts/main.js"></script>
+    <script src="/scripts/homepage.js"></script>
   </body>
 </html>

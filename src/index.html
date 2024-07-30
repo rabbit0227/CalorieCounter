@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage | Calorie Counter</title>
-    <link rel="icon" type="image/png" href="../assets/favicon.png"/>
+    <link rel="icon" type="image/png" href="./assets/favicon.png"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="../output.css" />
+    <link rel="stylesheet" href="./output.css" />
 </head>
 <!--bg-gradient-to-t from-slate-950 to-slate-400 flex flex-col-->
 <body class="font-poppins bg-teal-50 h-screen flex flex-col">
@@ -15,13 +15,13 @@
         <nav class="flex items-center justify-between w-[92%] mx-auto">
             <!--<div class="w-44 font-bold text-xl">Calorie Counter</div>-->
             <div class="flex items-center">
-                <a href="index.html"><img src="../assets/logo.png" class="w-20"></img></a>
+                <a href="./"><img src="./assets/logo.png" class="w-20"></img></a>
                 <span class="ml-3 text-xl font-bold">Calorie Counter</span>
             </div>
             <div class="nav-links duration-200 md:static absolute bg-white md:min-h-fit min-h-[30vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
                 <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
                     <li>
-                        <a href="https://github.com/rabbit0227/CalorieCounter" class="hover:text-gray-500 text-xl font-medium" href="#" target="_blank">Github</a>
+                        <a href="https://github.com/rabbit0227/CalorieCounter" class="hover:text-gray-500 text-xl font-medium" href="#" >Github</a>
                     </li>
                     <li>
                         <a class="hover:text-gray-500 text-xl font-medium" href="aboutus.html">About Us</a>
@@ -32,7 +32,7 @@
                 </ul>
             </div>
             <div class="flex items-center gap-6">
-                <button class="px-5 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200">Login</button>
+                <a href="signin.html"><button class="px-5 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200">Login</button></a>
                 <i id="menu" class="bx bx-menu text-3xl cursor-pointer md:hidden"></i>
             </div>
         </nav>
@@ -45,10 +45,10 @@
         <div data-aos="fade-up" class="flex flex-col-reverse md:flex-row items-center mt-10 lg:mb-20">
             <div class="mt-4 md:mt-0 md:mr-8">
                 <p class="text-center md:text-left">Count Your Way to a Healthier You</p>
-                <button id="myButton" class="animate-bounce px-3 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200 mt-6">Get Started Now</button>
+                <a href="calorieCalculator.html"><button id="myButton" class="animate-bounce px-3 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200 mt-6">Get Started Now</button></a>
             </div>
             <div>
-                <img src="../assets/note-taking-removebg-preview.png" class="max-w-full h-auto">
+                <img src="./assets/note-taking-removebg-preview.png" class="max-w-full h-auto">
             </div>
         </div>
 
@@ -61,7 +61,7 @@
                 
             </div>
             <div data-aos="slide-right" data-aos-delay="100" class="md:w-1/4 flex justify-center md:justify-end">
-                <img src="../assets/question-mark.webp" class="w-64 md:w-72 ml-0">
+                <img src="./assets/question-mark.webp" class="w-64 md:w-72 ml-0">
             </div>
         </div>
         
@@ -77,7 +77,7 @@
         
             </div>
             <div data-aos="slide-right" data-aos-delay="100"  class="flex justify-center md:justify-end">
-                <img src="../assets/equation.png" class="ml-0">
+                <img src="./assets/equation.png" class="ml-0">
             </div>
         </div>
     </main>
@@ -87,7 +87,7 @@
             <div class="grid md:grid-cols-12 grid-cols-1 gap-7">
                 <div class="lg:col-span-2 md:col-span-4 col-span-12">
                     <h5 class="tracking-wide text-gray-100 font-bold">
-                        <a href="index.html"><img class="w-20" src="../assets/logo-removebg-preview.png"></img></a>
+                        <a href="./"><img class="w-20" src="./assets/logo-removebg-preview.png"></img></a>
                         Calorie Counter</h5>
                     <ul class="list-none mt-6 space-y-2">
                         <li>
@@ -130,13 +130,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="aboutus.html"
+                            <a href="aboutus"
                                 class="hover:text-gray-400 transition-all duration-500 ease-in-out">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="calorieCalculator.html" target="_blank"
+                            <a href="calorieCalculator" target="_blank"
                                 class="hover:text-gray-400 transition-all duration-500 ease-in-out">
                                 Calculate Calories
                             </a>
@@ -159,19 +159,11 @@
         </div>
 
     </footer>
-    
+     
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
-    <script src="../scripts/homepage.js"></script>
-</body>
-    </footer>
-    
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-    <script src="../scripts/homepage.js"></script>
+    <script src="/scripts/homepage.js"></script>
 </body>
 </html>
