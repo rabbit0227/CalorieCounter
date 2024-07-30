@@ -1,3 +1,5 @@
+require("dotenv").config(); // Load the environment variables
+
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -143,21 +145,6 @@ app.post("/signup", async (req, res) => {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
-
-  /*const data = {
-    username: req.body.username,
-    password: req.body.password
-  }
-
-  //checks if username is unique/exists
-  const existingUser = await User.findOne({username: data.username});
-
-  if(existingUser) {
-    res.send("Username already exists. Please choose a different username.");
-  }
-
-  const userdata = await User.insertMany(data);
-  console.log(userdata); */
 });
 
 app.post("/signin", async (req, res) => {
@@ -177,12 +164,6 @@ app.post("/signin", async (req, res) => {
     if (password !== user.password) {
       return res.status(400).send("Password is incorrect.");
     }
-
-    //const isMatch = await bcrypt.compare(password, user.password);
-
-    /*if (!isMatch) {
-      return res.status(400).send("Username or password is incorrect.");
-    }*/
 
     // Successful sign-in
     res.redirect("/calorieCalculator.html");
@@ -371,17 +352,18 @@ app.delete("/activities/:id", async (req, res) => {
   }
 });
 
-mongoose.set("strictQuery", false);
+// Connect to MongoDB using the environment variable
 mongoose
-  .connect(
-    "mongodb+srv://admin:admin@csc-318-project.ywpdsjw.mongodb.net/Node-API?retryWrites=true&w=majority&appName=CSC-318-Project"
-  )
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
-    console.log("Connected to mongoDB");
+    console.log("Connected to MongoDB");
     app.listen(3000, () => {
-      console.log("Node API app is running on port 3000");
+      console.log("Server is running on port 3000");
     });
   })
   .catch((error) => {
-    console.log(error);
+    console.error("Connection error", error.message);
   });

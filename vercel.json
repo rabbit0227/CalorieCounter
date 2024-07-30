@@ -4,23 +4,12 @@
     {
       "src": "backend/server.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "input.css",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "output.css"
-      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "backend/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/src/$1"
     }
   ]
 }
