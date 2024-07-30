@@ -9,14 +9,11 @@ const Foods = require("./models/foodsModel");
 const Activities = require("./models/activitiesModel");
 
 const app = express();
-//app.use(express.urlencoded({ extended: false }));
-
-app.use(express.json());
 
 // Use CORS middleware
 app.use(
   cors({
-    origin: "https://calorie-counter-weld.vercel.app", // Allow only this origin
+    origin: "https://calorie-counter-weld.vercel.app", // Ensure this is correct
   })
 );
 
