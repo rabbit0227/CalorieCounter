@@ -133,29 +133,6 @@ function calculateCalories() {
   }
 }
 
-// // Handle sign out
-// async function signOut() {
-//   try {
-//     const response = await fetch("/api/signout", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     if (response.ok) {
-//       localStorage.removeItem("isLoggedIn");
-//       isLoggedIn = false;
-//       updateAuthButton();
-//       alert("Signed out successfully");
-//     } else {
-//       throw new Error("Failed to sign out.");
-//     }
-//   } catch (error) {
-//     alert(`Error signing out: ${error.message}`);
-//   }
-// }
-
 document.addEventListener("DOMContentLoaded", () => {
   // Sign-In Form Submission
   const signinForm = document.getElementById("signinForm");

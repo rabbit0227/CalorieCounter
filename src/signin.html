@@ -10,39 +10,37 @@
   <link href="./output.css" rel="stylesheet" />
 </head>
  
-  <body class="font-poppins bg-cover bg-center bg-no-repeat bg-gray-900 text-black"
-    style="background-image: url(&quot;./assets/background1.jpg&quot;)">
-    <header class="bg-white py-2 shadow-custom z-[1000]">
+<body class="font-poppins bg-teal-50 h-screen flex flex-col">
+  <header class="bg-white py-2 shadow-custom z-[1000]">
       <nav class="flex items-center justify-between w-[92%] mx-auto">
-        <!--<div class="w-44 font-bold text-xl">Calorie Counter</div>-->
-        <div class="flex items-center">
-          <a href="./"><img src="./assets/logo.png" class="w-20"></img></a>
-          <span class="ml-3 text-xl font-bold">Calorie Counter</span>
-        </div>
-        <div
-          class="nav-links duration-200 md:static absolute bg-white md:min-h-fit min-h-[30vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
-          <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
-            <li>
-              <a href="https://github.com/rabbit0227/CalorieCounter" class="hover:text-gray-500 text-xl font-medium"
-                href="#" target="_blank">Github</a>
-            </li>
-            <li>
-              <a class="hover:text-gray-500 text-xl font-medium" href="aboutus.html">About Us</a>
-            </li>
-            <li>
-              <a class="hover:text-gray-500 text-xl font-medium" href="calorieCalculator.html" target="_blank">Calculate
-                Calories</a>
-            </li>
-          </ul>
-        </div>
-        <div class="flex items-center gap-6">
-          <a href="signin.html"><button
-              class="px-5 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200">Login</button></a>
-          <i id="menu" class="bx bx-menu text-3xl cursor-pointer md:hidden"></i>
-        </div>
+          <!--<div class="w-44 font-bold text-xl">Calorie Counter</div>-->
+          <div class="flex items-center">
+              <a href="./"><img src="./assets/logo.png" class="w-20"></img></a>
+              <span class="ml-3 text-xl font-bold">Calorie Counter</span>
+          </div>
+          <div
+              class="nav-links duration-200 md:static absolute bg-white md:min-h-fit min-h-[30vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
+              <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+                  <li>
+                      <a href="https://github.com/rabbit0227/CalorieCounter"
+                          class="hover:text-gray-500 text-xl font-medium" href="#" target="_blank">Github</a>
+                  </li>
+                  <li>
+                      <a class="hover:text-gray-500 text-xl font-medium" href="aboutus.html">About Us</a>
+                  </li>
+                  <li>
+                      <a class="hover:text-gray-500 text-xl font-medium" href="calorieCalculator.html"
+                          >Calculate Calories</a>
+                  </li>
+              </ul>
+          </div>
+          <div class="flex items-center gap-6">
+              <button class="px-5 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200" onclick="window.location.href='signin.html'">Login</button>
+              <i id="menu" class="bx bx-menu text-3xl cursor-pointer md:hidden"></i>
+          </div>
       </nav>
   
-    </header>
+  </header>
   
     <!--<header class="bg-white/30 backdrop-blur-md p-4 fle top-0 w-full">
         <nav class="max-w-7xl mx-auto flex items-center justify-between">
