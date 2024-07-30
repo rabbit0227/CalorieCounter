@@ -14,7 +14,12 @@ const app = express();
 // app.use(express.json());
 
 // Use CORS middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://calorie-counter-mjak.vercel.app", // Allow only this origin
+  })
+);
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
