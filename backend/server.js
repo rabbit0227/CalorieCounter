@@ -8,23 +8,43 @@ const Foods = require("./models/foodsModel");
 const Activities = require("./models/activitiesModel");
 
 const app = express();
-app.use(express.urlencoded({ extended: false }));
+//app.use(express.urlencoded({ extended: false }));
 
-app.use(express.json());
+// app.use(express.json());
 
 // Use CORS middleware
 app.use(cors());
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+
 app.use(express.static(path.join(__dirname, '../src')));
+//app.use(express.static(path.join(__dirname, '../scripts')));
+app.use('/scripts', express.static(path.join(__dirname, '../scripts')));
+console.log(path.join(__dirname, '../src'))
+console.log(path.join(__dirname, '../scripts/homepage.js'))
+console.log(path.join(__dirname, '../index.html'))
 // ROOT ROUTES
 
 // GETS
 app.get("/", (req, res) => {
   //res.send("Hello node API");
   res.sendFile(path.join(__dirname, '../src/index.html'));
+  //res.sendFile(path.join(__dirname, 'src', 'index.html'));
+  
+});
+
+app.get("/aboutus", (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/aboutus.html'));
+});
+app.get("/calorieCalculator", (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/calorieCalculator.html'));
+});
+app.get("/signin", (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/signin.html'));
+});
+app.get("/signup", (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/signup.html'));
 });
 
 // USER ROUTES
