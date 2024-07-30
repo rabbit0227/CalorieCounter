@@ -133,28 +133,6 @@ function calculateCalories() {
   }
 }
 
-// Update the sign-in/sign-out button text based on login status
-
-function updateAuthButton() {
-  const authButton = document.getElementById("authButton");
-  console.log("Updating auth button, isLoggedIn:", isLoggedIn); // Debug log
-
-  if (authButton) {
-    if (isLoggedIn) {
-      authButton.textContent = "Sign Out";
-      authButton.onclick = signOut;
-    } else {
-      authButton.textContent = "Sign In";
-      authButton.onclick = () => {
-        console.log("Redirecting to sign-in page"); // Debug log
-        window.location.href = "signin.html";
-      };
-    }
-  } else {
-    console.error("Auth button not found.");
-  }
-}
-
 // // Handle sign out
 // async function signOut() {
 //   try {
@@ -178,222 +156,142 @@ function updateAuthButton() {
 //   }
 // }
 
-// Event listener for sign-in page
 document.addEventListener("DOMContentLoaded", () => {
-  // const signinForm = document.getElementById("signinForm");
-  // const signupForm = document.getElementById("signupForm");
+  // Sign-In Form Submission
+  const signinForm = document.getElementById("signinForm");
+  if (signinForm) {
+    signinForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-  // if (signinForm) {
-  //   signinForm.addEventListener("submit", async (event) => {
-  //     event.preventDefault();
+      try {
+        const response = await fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        });
 
-  //     const email = document.getElementById("signinEmail").value.trim();
-  //     const password = document.getElementById("signinPassword").value;
+        const result = await response.json();
+        if (response.ok) {
+          localStorage.setItem("isLoggedIn", "true");
+          alert("Sign in successful");
+          // Redirect to homepage or dashboard
+          window.location.href = "loggedin.html";
+        } else {
+          alert(result.message);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    });
+  }
 
-  //     if (email === "" || password === "") {
-  //       alert("Please fill out both fields.");
-  //       return;
-  //     }
+  // Sign-Up Form Submission
+  const signupForm = document.getElementById("signupForm");
+  if (signupForm) {
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("signupUsername").value;
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
 
-  //     try {
-  //       const response = await fetch("/api/signin", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ email, password }),
-  //       });
+      try {
+        const response = await fetch("http://localhost:3000/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password }),
+        });
 
-  //       const result = await response.json();
-
-  //       if (response.ok && result.success) {
-  //         localStorage.setItem("isLoggedIn", "true");
-  //         window.location.href = "calorieCalculator.html";
-  //       } else {
-  //         alert(result.message || "An error occurred");
-  //       }
-  //     } catch (error) {
-  //       alert(`An error occurred: ${error.message}`);
-  //     }
-  //   });
-  // }
-
-  // if (signupForm) {
-  //   signupForm.addEventListener("submit", async (event) => {
-  //     event.preventDefault();
-
-  //     const email = document.getElementById("signupEmail").value.trim();
-  //     const password = document.getElementById("signupPassword").value;
-
-  //     if (email === "" || password === "") {
-  //       alert("Please fill out both fields.");
-  //       return;
-  //     }
-
-  //     try {
-  //       const response = await fetch("/api/signup", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ email, password }),
-  //       });
-
-  //       if (response.ok) {
-  //         window.location.href = "signin.html";
-  //       } else {
-  //         const error = await response.json();
-  //         alert(`Error: ${error.message}`);
-  //       }
-  //     } catch (error) {
-  //       alert(`An error occurred: ${error.message}`);
-  //     }
-  //   });
-  // }
+        const result = await response.json();
+        if (response.ok) {
+          alert("Sign up successful");
+          // Redirect to sign-in page
+          window.location.href = "signin.html";
+        } else {
+          alert(result.message);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    });
+  }
 
   // Initialize app if it's the main page
   if (document.getElementById("foodInput")) {
     initializeApp();
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    // Sign-In Form Submission
-    const signinForm = document.getElementById("signinForm");
-    if (signinForm) {
-      signinForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        try {
-          const response = await fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password }),
-          });
-
-          const result = await response.json();
-          if (response.ok) {
-            localStorage.setItem("isLoggedIn", "true");
-            alert("Sign in successful");
-            // Redirect to homepage or dashboard
-            window.location.href = "loggedin.html";
-          } else {
-            alert(result.message);
-          }
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      });
-    }
-
-    // Sign-Up Form Submission
-    const signupForm = document.getElementById("signupForm");
-    if (signupForm) {
-      signupForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const username = document.getElementById("signupUsername").value;
-        const email = document.getElementById("signupEmail").value;
-        const password = document.getElementById("signupPassword").value;
-
-        try {
-          const response = await fetch("http://localhost:3000/register", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, email, password }),
-          });
-
-          const result = await response.json();
-          if (response.ok) {
-            alert("Sign up successful");
-            // Redirect to sign-in page
-            window.location.href = "signin.html";
-          } else {
-            alert(result.message);
-          }
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      });
-    }
-
-    // Initialize app if it's the main page
-    if (document.getElementById("foodInput")) {
-      initializeApp();
-    }
-
-    // Logout button functionality
-    const logoutButton = document.getElementById("logoutButton");
-    if (logoutButton) {
-      logoutButton.addEventListener("click", () => {
-        localStorage.removeItem("isLoggedIn");
-        alert("Logged out successfully");
-        window.location.href = "signin.html";
-      });
-    }
-  });
-
-  function calculateCalories() {
-    console.log("Calculate Calories function called");
-
-    // Check if foods and activities are loaded
-    if (foods.length === 0 || activities.length === 0) {
-      console.error("Foods or activities not loaded.");
-      return;
-    }
-
-    // Retrieve inputs
-    const selectedFoodName = document.getElementById("foodInput").value.trim();
-    const selectedActivity = document
-      .getElementById("activityInput")
-      .value.trim();
-    const duration = parseInt(document.getElementById("duration").value) || 0;
-    const weight = parseFloat(document.getElementById("weight").value) || 0;
-    const height = parseFloat(document.getElementById("height").value) || 0;
-    const age = parseInt(document.getElementById("age").value) || 25;
-    const gender =
-      document.querySelector('input[name="gender"]:checked')?.value || "male";
-
-    // Validate inputs
-    if (weight <= 0 || height <= 0) {
-      alert("Please enter valid weight and height values.");
-      return;
-    }
-
-    // Calculate BMR
-    const bmr = calculateBMR(weight, height, age, gender);
-
-    // Find selected food's calories
-    const food = foods.find(
-      (item) => item.name.toLowerCase() === selectedFoodName.toLowerCase()
-    );
-    const foodCalories = food ? food.calories : 0;
-
-    // Calculate calories burned from activity
-    const caloriesBurned = calculateCaloriesBurned(
-      selectedActivity,
-      duration,
-      weight
-    );
-
-    // Calculate net calories
-    const netCalories = foodCalories - caloriesBurned;
-
-    // Display result in HTML
-    const resultElement = document.getElementById("caloriesResult");
-    if (resultElement) {
-      resultElement.innerHTML = `
-      <p class="text-green-500"><strong>Calories Consumed from ${selectedFoodName}: </strong>${foodCalories} kcal</p>
-      <p class="text-green-500"><strong>Calories Burned from ${selectedActivity} (${duration} minutes): </strong>${caloriesBurned} kcal</p>
-      <p class="text-green-500"><strong>Net Calories: </strong>${netCalories} kcal</p>
-      <p class="text-green-500"><strong>BMR (Basal Metabolic Rate): </strong>${bmr.toFixed(2)} kcal/day</p>
-    `;
-    } else {
-      console.error("caloriesResult element not found.");
-    }
+  // Logout button functionality
+  const logoutButton = document.getElementById("logoutButton");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("isLoggedIn");
+      alert("Logged out successfully");
+      window.location.href = "signin.html";
+    });
   }
 });
+
+function calculateCalories() {
+  console.log("Calculate Calories function called");
+
+  // Check if foods and activities are loaded
+  if (foods.length === 0 || activities.length === 0) {
+    console.error("Foods or activities not loaded.");
+    return;
+  }
+
+  // Retrieve inputs
+  const selectedFoodName = document.getElementById("foodInput").value.trim();
+  const selectedActivity = document
+    .getElementById("activityInput")
+    .value.trim();
+  const duration = parseInt(document.getElementById("duration").value) || 0;
+  const weight = parseFloat(document.getElementById("weight").value) || 0;
+  const height = parseFloat(document.getElementById("height").value) || 0;
+  const age = 25;
+  const gender = "male";
+
+  // Validate inputs
+  if (weight <= 0 || height <= 0) {
+    alert("Please enter valid weight and height values.");
+    return;
+  }
+
+  // Calculate BMR
+  const bmr = calculateBMR(weight, height, age, gender);
+
+  // Find selected food's calories
+  const food = foods.find(
+    (item) => item.name.toLowerCase() === selectedFoodName.toLowerCase()
+  );
+  const foodCalories = food ? food.calories : 0;
+
+  // Calculate calories burned from activity
+  const caloriesBurned = calculateCaloriesBurned(
+    selectedActivity,
+    duration,
+    weight
+  );
+
+  // Calculate net calories
+  const netCalories = foodCalories - caloriesBurned;
+
+  // Display result in HTML
+  const resultElement = document.getElementById("caloriesResult");
+  if (resultElement) {
+    resultElement.innerHTML = `
+        <p class="text-green-500"><strong>Calories Consumed from ${selectedFoodName}: </strong>${foodCalories} kcal</p>
+        <p class="text-green-500"><strong>Calories Burned from ${selectedActivity} (${duration} minutes): </strong>${caloriesBurned} kcal</p>
+        <p class="text-green-500"><strong>Net Calories: </strong>${netCalories} kcal</p>
+        <p class="text-green-500"><strong>BMR (Basal Metabolic Rate): </strong>${bmr.toFixed(2)} kcal/day</p>
+      `;
+  } else {
+    console.error("caloriesResult element not found.");
+  }
+}
