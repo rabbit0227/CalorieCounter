@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
-    <link href="../output.css" rel="stylesheet" />
+    <link href="./output.css" rel="stylesheet" />
   </head>
   <body
     class="bg-cover bg-center bg-no-repeat bg-gray-900 text-white"
-    style="background-image: url(&quot;../assets/background1.jpg&quot;)"
+    style="background-image: url(&quot;./assets/background1.jpg&quot;)"
   >
     <header class="bg-white/30 backdrop-blur-md p-4 fle top-0 w-full">
       <nav class="max-w-7xl mx-auto flex items-center justify-between">
@@ -50,7 +50,7 @@
           Sign Up
         </h1>
 
-        <form id="signupForm">
+        <form id="signupForm" action="/signup" method="post">
           <div class="mb-4">
             <label
               for="signupUsername"
@@ -61,6 +61,7 @@
             <input
               type="text"
               id="signupUsername"
+              name="username"
               autocomplete="off"
               class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
               placeholder="Enter your username"
@@ -78,6 +79,7 @@
             <input
               type="email"
               id="signupEmail"
+              name="email"
               autocomplete="off"
               class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
               placeholder="Enter your email"
@@ -95,6 +97,7 @@
             <input
               type="password"
               id="signupPassword"
+              name="password"
               class="input-field bg-gray-100 text-gray-900 p-2 rounded-md border border-gray-300"
               placeholder="Enter your password"
               required
