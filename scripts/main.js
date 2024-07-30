@@ -179,7 +179,7 @@ function updateAuthButton() {
 // }
 
 // Event listener for sign-in page
-document.addEventListener("DOMContentLoaded", () => {
+//document.addEventListener("DOMContentLoaded", () => {
   // const signinForm = document.getElementById("signinForm");
   // const signupForm = document.getElementById("signupForm");
 
@@ -252,9 +252,77 @@ document.addEventListener("DOMContentLoaded", () => {
   // }
 
   // Initialize app if it's the main page
-  if (document.getElementById("foodInput")) {
-    initializeApp();
-  }
+  //if (document.getElementById("foodInput")) {
+ //   initializeApp();
+ // }
+  document.addEventListener("DOMContentLoaded", () => {
+    // Sign-In Form Submission
+    const signinForm = document.getElementById("signinForm");
+    if (signinForm) {
+      signinForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("signinPassword").value;
+  
+        try {
+          const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
+  
+          const result = await response.json();
+          if (response.ok) {
+            alert("Sign in successful");
+            // Redirect to homepage or dashboard
+            window.location.href = "index.html";
+          } else {
+            alert(result.message);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      });
+    }
+  
+    // Sign-Up Form Submission
+    const signupForm = document.getElementById("signupForm");
+    if (signupForm) {
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const username = document.getElementById("signupUsername").value;
+        const email = document.getElementById("signupEmail").value;
+        const password = document.getElementById("signupPassword").value;
+  
+        try {
+          const response = await fetch("http://localhost:3000/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, email, password }),
+          });
+  
+          const result = await response.json();
+          if (response.ok) {
+            alert("Sign up successful");
+            // Redirect to sign-in page
+            window.location.href = "signin.html";
+          } else {
+            alert(result.message);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      });
+    }
+  
+    // Initialize app if it's the main page
+    if (document.getElementById("foodInput")) {
+      initializeApp();
+    }
 
   function calculateCalories() {
     console.log("Calculate Calories function called");
@@ -315,4 +383,5 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("caloriesResult element not found.");
     }
   }
+  
 });
