@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "The Calorie Tracker website allows users to track their calorie intake and expenditure based on selected foods and activities. It calculates net calories and provides an estimate of Basal Metabolic Rate (BMR) using the Revised Harris-Benedict Equation (1984 revision).",
   "main": "tailwind.config.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "tailwindcss": "^3.4.7"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tailwindcss -i ./input.css -o ./src/output.css"
   },
   "keywords": [],
   "author": "",

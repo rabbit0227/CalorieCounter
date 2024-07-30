@@ -3,16 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>Sign Up | Calorie Counter</title>
+    <link rel="icon" type="image/png" href="./assets/favicon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body
-    class="bg-cover bg-center bg-no-repeat bg-gray-900 text-white"
+    class="font-poppins bg-cover bg-center bg-no-repeat bg-gray-900 text-black"
     style="background-image: url(&quot;./assets/background1.jpg&quot;)"
   >
-    <header class="bg-white/30 backdrop-blur-md p-4 fle top-0 w-full">
+    <header class="bg-white py-2 shadow-custom z-[1000]">
+      <nav class="flex items-center justify-between w-[92%] mx-auto">
+        <!--<div class="w-44 font-bold text-xl">Calorie Counter</div>-->
+        <div class="flex items-center">
+          <a href="./"><img src="./assets/logo.png" class="w-20"></img></a>
+          <span class="ml-3 text-xl font-bold">Calorie Counter</span>
+        </div>
+        <div
+          class="nav-links duration-200 md:static absolute bg-white md:min-h-fit min-h-[30vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
+          <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+            <li>
+              <a href="https://github.com/rabbit0227/CalorieCounter" class="hover:text-gray-500 text-xl font-medium"
+                href="#" target="_blank">Github</a>
+            </li>
+            <li>
+              <a class="hover:text-gray-500 text-xl font-medium" href="aboutus">About Us</a>
+            </li>
+            <li>
+              <a class="hover:text-gray-500 text-xl font-medium" href="calorieCalculator" target="_blank">Calculate
+                Calories</a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="signin"><button
+              class="px-5 py-2 text-white bg-lime-300 rounded-full hover:bg-lime-200">Login</button></a>
+          <i id="menu" class="bx bx-menu text-3xl cursor-pointer md:hidden"></i>
+        </div>
+      </nav>
+    
+    </header>
+    <!--<header class="bg-white/30 backdrop-blur-md p-4 fle top-0 w-full">
       <nav class="max-w-7xl mx-auto flex items-center justify-between">
-        <!-- Left Side Links -->
+        <!-- Left Side Links 
         <div class="flex items-center space-x-4">
           <a
             href="index.html"
@@ -30,7 +63,7 @@
             >About</a
           >
         </div>
-        <!-- Sign In Button -->
+        <!-- Sign In Button 
         <div>
           <a
             id="authButton"
@@ -41,7 +74,7 @@
           </a>
         </div>
       </nav>
-    </header>
+    </header> -->
     <main class="flex items-center justify-center min-h-screen relative">
       <div
         class="max-w-lg mx-auto bg-white/30 text-green-600 p-6 rounded-md shadow-lg backdrop-blur-md"
@@ -114,7 +147,7 @@
           <div class="mt-4 text-center">
             <p class="text-gray-400">
               Already have an account?
-              <a href="signin.html" class="text-blue-300 hover:underline"
+              <a href="signin" class="text-blue-300 hover:underline"
                 >Sign In</a
               >
             </p>
@@ -122,6 +155,88 @@
         </form>
       </div>
     </main>
-    <script src="../scripts/main.js"></script>
+
+    <footer data-aos="slide-up" class="bg-gray-900 text-gray-200 mt-40">
+      <div class="container mx-auto py-14 px-6">
+        <div class="grid md:grid-cols-12 grid-cols-1 gap-7">
+          <div class="lg:col-span-2 md:col-span-4 col-span-12">
+            <h5 class="tracking-wide text-gray-100 font-bold">
+              <a href="./"><img class="w-20" src="./assets/logo-removebg-preview.png"></img></a>
+              Calorie Counter
+            </h5>
+            <ul class="list-none mt-6 space-y-2">
+              <li>
+                "Count Your Way to a Healthier You."
+              </li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 md:col-span-4 col-span-12">
+            <h5 class="tracking-wide text-gray-100 font-semibold">Contributors</h5>
+            <ul class="list-none mt-6 space-y-2">
+              <li>
+                <a href="https://github.com/rabbit0227" target="_blank"
+                  class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                  Anthony Barrameda Tsangarides
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/msierras" target="_blank"
+                  class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                  Melvin Sierra
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/UebokGR" target="_blank"
+                  class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                  David Valdez
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/squeezed-lemon" target="_blank"
+                  class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                  Mohammed A. Al-Muqsit
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 md:col-span-4 col-span-12">
+            <h5 class="tracking-wide text-gray-100 font-semibold">Quick Links</h5>
+            <ul class="list-none mt-6 space-y-2">
+              <li>
+                <a href="https://github.com/rabbit0227/CalorieCounter" target="_blank"
+                  class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                  Github
+                </a>
+              </li>
+              <li>
+                <a href="aboutus" class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="calorieCalculator" target="_blank"
+                  class="hover:text-gray-400 transition-all duration-500 ease-in-out">
+                  Calculate Calories
+                </a>
+              </li>
+            </ul>
+          </div>
+    
+        </div>
+      </div>
+      <div class="border-t border-slate-700">
+        <div class="md:text-left text-center container mx-auto py-7 px-6">
+          <p class="mb-0">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            Calorie Counter
+          </p>
+        </div>
+      </div>
+    
+    </footer>
+    <script src="/scripts/main.js"></script>
   </body>
 </html>
