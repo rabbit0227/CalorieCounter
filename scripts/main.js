@@ -6,7 +6,9 @@ let isLoggedIn = false; // Track login status
 // Function to fetch and load food data from the server
 async function loadFoods() {
   try {
-    const response = await fetch("http://localhost:3000/foods");
+    const response = await fetch(
+      "https://calorie-counter-4xwc668dv-rabbits-projects-cfa75ee8.vercel.app/foods"
+    );
     console.log("Foods response status:", response.status); // Log status
     if (!response.ok) throw new Error("Failed to load foods.");
     foods = await response.json();
@@ -19,7 +21,9 @@ async function loadFoods() {
 // Function to fetch and load activity data from the server
 async function loadActivities() {
   try {
-    const response = await fetch("http://localhost:3000/activities"); // Updated to use server route
+    const response = await fetch(
+      "https://calorie-counter-4xwc668dv-rabbits-projects-cfa75ee8.vercel.app/activities"
+    ); // Updated to use server route
     console.log("Activities response status:", response.status); // Log status
     if (!response.ok) throw new Error("Failed to load activities.");
     activities = await response.json();
